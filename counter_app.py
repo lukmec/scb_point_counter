@@ -9,7 +9,7 @@ from game import Game
 
 # Flask constructor takes the name of 
 # current module (__name__) as argument.
-app = Flask(__name__)
+counter_app = Flask(__name__)
 
 api_endpoint_prefix = "/scb_counter_api/v1"
 flutter_app_location = "flutter/v1"
@@ -41,17 +41,17 @@ last_game_id = len(games)-1 #counter for generating runtime-unique game ids
 # The route() function of the Flask class is a decorator, 
 # which tells the application which URL should call 
 # the associated function.
-@app.route('/')
+@counter_app.route('/')
 # ‘/’ URL is bound with hello_world() function.
 def serve_landing_page():
     # return 'Welcome to the SCB Game Point Counter Webservice!'
     return send_from_directory(flutter_app_location, "index.html")
 
-@app.route('/<path:path>')
+@counter_app.route('/<path:path>')
 def serve_static_flutter_files(path):
     return send_from_directory(flutter_app_location, path)
 
-@app.route(api_endpoint_prefix+'/game/<game_id>/')
+@counter_app.route(api_endpoint_prefix + '/game/<game_id>/')
 def get_game_info(game_id):
     #cast parameter from str to int
     game_id = int(game_id)
@@ -67,7 +67,7 @@ def get_game_info(game_id):
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
-@app.route(api_endpoint_prefix+'/game/<game_id>/delete')
+@counter_app.route(api_endpoint_prefix + '/game/<game_id>/delete')
 def delete_game(game_id):
     #cast parameter from str to int
     game_id = int(game_id)
@@ -85,7 +85,7 @@ def delete_game(game_id):
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
-@app.route(api_endpoint_prefix+'/game/new', methods=['GET', 'POST'])
+@counter_app.route(api_endpoint_prefix + '/game/new', methods=['GET', 'POST'])
 def create_new_game():
     # receive params for new game
     if request.method == 'GET':
@@ -111,7 +111,7 @@ def create_new_game():
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
-@app.route(api_endpoint_prefix+'/game/<game_id>/add_point', methods=['GET', 'POST'])
+@counter_app.route(api_endpoint_prefix + '/game/<game_id>/add_point', methods=['GET', 'POST'])
 def add_point(game_id):
     # cast parameter from str to int
     game_id = int(game_id)
@@ -140,7 +140,7 @@ def add_point(game_id):
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
-@app.route(api_endpoint_prefix+'/game/<game_id>/remove_point', methods=['GET', 'POST'])
+@counter_app.route(api_endpoint_prefix + '/game/<game_id>/remove_point', methods=['GET', 'POST'])
 def remove_point(game_id):
     # cast parameter from str to int
     game_id = int(game_id)
@@ -169,7 +169,7 @@ def remove_point(game_id):
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
-@app.route(api_endpoint_prefix+'/game/<game_id>/set_points', methods=['GET', 'POST'])
+@counter_app.route(api_endpoint_prefix + '/game/<game_id>/set_points', methods=['GET', 'POST'])
 def set_point(game_id):
     # cast parameter from str to int
     game_id = int(game_id)
@@ -201,7 +201,7 @@ def set_point(game_id):
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
-@app.route(api_endpoint_prefix+'/game/<game_id>/rename', methods=['GET', 'POST'])
+@counter_app.route(api_endpoint_prefix + '/game/<game_id>/rename', methods=['GET', 'POST'])
 def modify_game(game_id):
     # cast parameter from str to int
     game_id = int(game_id)
@@ -235,7 +235,7 @@ def modify_game(game_id):
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
-@app.route(api_endpoint_prefix+'/games/')
+@counter_app.route(api_endpoint_prefix + '/games/')
 def get_games():
     all_games_info = []
     for game in games:
@@ -245,7 +245,7 @@ def get_games():
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
-@app.route(api_endpoint_prefix+'/games/delete_all')
+@counter_app.route(api_endpoint_prefix + '/games/delete_all')
 def delete_all_games():
     #empty games list
     games.clear()
@@ -255,11 +255,3 @@ def delete_all_games():
     # Enable Access-Control-Allow-Origin
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
-
-
-# main driver function
-if __name__ == '__main__':
-
-    # run() method of Flask class runs the application 
-    # on the local development server.
-    app.run()
