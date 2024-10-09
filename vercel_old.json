@@ -7,3 +7,10 @@
     { "src": "/(.*)", "dest": "/counter_app.py" }
   ]
 }
+
+
+{
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/counter_app" }
+  ]
+}

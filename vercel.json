@@ -1,5 +1,14 @@
-{
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/counter_app" }
-  ]
-}
+ {
+     "builds": [
+         {
+             "src": "api/counter_app.py",
+             "use": "@vercel/python"
+         }
+     ],
+     "routes": [
+         {
+             "src": "/(.*)",
+             "dest": "api/counter_app.py"
+         }
+     ]
+ }
