@@ -72381,8 +72381,8 @@ A.w2.prototype={
 ai(){return new A.zV()}}
 A.zV.prototype={
 av(){this.aT()
-$.aoQ="http://127.0.0.1:5000"
-this.e=A.Ci("http://127.0.0.1:5000/scb_counter_api/v1/game/0/")},
+$.aoQ="https://zaehltafel.scb-badminton.de"
+this.e=A.Ci("https://zaehltafel.scb-badminton.de/scb_counter_api/v1/game/0/")},
 a5Q(a,b,c,d){this.ao(new A.ach(this,a,b,c,d))},
 L(a){var s,r=null,q=A.O(a).ax,p=q.y2
 q=p==null?q.c:p
