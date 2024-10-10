@@ -29,7 +29,8 @@
 # if __name__ == "__main__":
 #     app.run()
 
-from api.index import app
+# from api.index import app
+from api.counter_app import counter_app as app
 
 if __name__ == "__main__":
     app.run()
