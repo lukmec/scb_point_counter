@@ -12,7 +12,7 @@ from game import Game
 counter_app = Flask(__name__)
 
 api_endpoint_prefix = "/scb_counter_api/v1"
-flutter_app_location = "flutter/v1"
+flutter_app_location = "flutter/v2"
 
 #API ENDPOINTS
 # /
