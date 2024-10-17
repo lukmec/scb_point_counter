@@ -3,4 +3,5 @@ from counter_app import counter_app as app
 
 #for running locally for testing
 if __name__ == "__main__":
+
     app.run()

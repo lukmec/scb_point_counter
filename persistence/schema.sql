@@ -1,0 +1,25 @@
+DROP TABLE IF EXISTS games;
+--DROP TABLE IF EXISTS post;
+
+CREATE TABLE games (
+  game_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  game_name TEXT NOT NULL,
+  player_name_a TEXT NOT NULL,
+  player_name_b TEXT NOT NULL,
+  points_a_1 INTEGER NOT NULL,
+  points_a_2 INTEGER NOT NULL,
+  points_a_3 INTEGER NOT NULL,
+  points_b_1 INTEGER NOT NULL,
+  points_b_2 INTEGER NOT NULL,
+  points_b_3 INTEGER NOT NULL
+);
+
+
+--CREATE TABLE post (
+--  id INTEGER PRIMARY KEY AUTOINCREMENT,
+--  author_id INTEGER NOT NULL,
+--  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+--  title TEXT NOT NULL,
+--  body TEXT NOT NULL,
+--  FOREIGN KEY (author_id) REFERENCES user (id)
+--);
